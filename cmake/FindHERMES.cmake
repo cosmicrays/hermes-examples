@@ -1,0 +1,20 @@
+# Find HERMES. Sets
+# HERMES_FOUND = true if hermes is found
+# HERMES_INCLUDE_DIR = hermes.h
+# HERMES_LIBRARIES = libhermes.a .so
+
+find_path(HERMES_INCLUDE_DIR hermes.h)
+find_library(HERMES_LIBRARIES hermes)
+
+set(HERMES_FOUND FALSE)
+if(HERMES_INCLUDE_DIR AND HERMES_LIBRARIES)
+    set(HERMES_FOUND TRUE)
+    MESSAGE(STATUS "HERMES: Found!")
+else()
+    MESSAGE(STATUS "HERMES: NOT Found!")
+endif()
+
+MESSAGE(STATUS "  Include:     ${HERMES_INCLUDE_DIR}")
+MESSAGE(STATUS "  Library:     ${HERMES_LIBRARIES}")
+
+mark_as_advanced(HERMES_INCLUDE_DIR HERMES_LIBRARIES HERMES_FOUND)

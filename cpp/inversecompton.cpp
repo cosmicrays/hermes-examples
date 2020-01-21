@@ -29,8 +29,8 @@ void exampleIC() {
         int nside = 32;
         auto mask = std::make_shared<RectangularWindow>(RectangularWindow(
                         QAngle(8_deg), QAngle(-8_deg), QAngle(-80_deg), QAngle(80_deg)));
-        auto skymaps = std::make_shared<DiffFluxSkymap>(DiffFluxSkymap(nside, 100_MeV));
-        //auto skymaps = std::make_shared<DiffFluxSkymapRange>(DiffFluxSkymapRange(nside, 100_MeV, 300_GeV, 10));
+        auto skymaps = std::make_shared<GammaSkymap>(GammaSkymap(nside, 100_MeV));
+        //auto skymaps = std::make_shared<GammaSkymapRange>(GammaSkymapRange(nside, 100_MeV, 300_GeV, 10));
         skymaps->setMask(mask);
         skymaps->setIntegrator(intIC);
 

@@ -26,7 +26,7 @@ void examplePion() {
 
 	// skymap
 	int nside = 32;
-	auto skymap = std::make_shared<DiffFluxSkymap>(DiffFluxSkymap(nside, 1_GeV));
+	auto skymap = std::make_shared<GammaSkymap>(GammaSkymap(nside, 1_GeV));
 	skymap->setIntegrator(intPiZero);
 
 	auto output = std::make_shared<FITSOutput>(FITSOutput("!example-pion.fits.gz"));

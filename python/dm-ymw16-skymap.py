@@ -16,7 +16,7 @@ output = FITSOutput("!fits/dm-ymw16-skymap.fits.gz")
 skymap.save(output)
 
 healpy.visufunc.mollview(
-        np.log(np.array(skymap)),
-        title='DM of YMW16 [pc/cm3]', cmap='magma')
+        np.log10(np.array(skymap)),
+        title='DM of YMW16 log([pc/cm3])', cmap='magma')
 
 plt.savefig('img/dm-ymw16-skymap.png')

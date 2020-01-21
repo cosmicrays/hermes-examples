@@ -104,26 +104,26 @@ endif(HERMES_FOUND)
 # ----------------------------------------------------------------------------
 include_directories(include ${HERMES_EXTRA_INCLUDES})
 
-add_executable(freefree src/freefree.cpp)
+add_executable(freefree cpp/freefree.cpp)
 target_link_libraries(freefree ${HERMES_EXTRA_LIBRARIES})
 
-add_executable(rotationmeasure src/rotationmeasure.cpp)
+add_executable(rotationmeasure cpp/rotationmeasure.cpp)
 target_link_libraries(rotationmeasure ${HERMES_EXTRA_LIBRARIES})
 
-add_executable(synchrotron src/synchrotron.cpp)
+add_executable(synchrotron cpp/synchrotron.cpp)
 target_link_libraries(synchrotron ${HERMES_EXTRA_LIBRARIES})
 
-add_executable(synchrotronwithabsorption src/synchrotronwithabsorption.cpp)
+add_executable(synchrotronwithabsorption cpp/synchrotronwithabsorption.cpp)
 target_link_libraries(synchrotronwithabsorption ${HERMES_EXTRA_LIBRARIES})
 
-add_executable(piondecay src/piondecay.cpp)
+add_executable(piondecay cpp/piondecay.cpp)
 target_link_libraries(piondecay ${HERMES_EXTRA_LIBRARIES})
 
-add_executable(inversecompton src/inversecompton.cpp)
+add_executable(inversecompton cpp/inversecompton.cpp)
 target_link_libraries(inversecompton ${HERMES_EXTRA_LIBRARIES})
 
-add_executable(generic src/generic.cpp)
+add_executable(generic cpp/generic.cpp)
 target_link_libraries(generic ${HERMES_EXTRA_LIBRARIES})
 
-add_executable(exportmodel src/exportmodel.cpp)
+add_executable(exportmodel cpp/exportmodel.cpp)
 target_link_libraries(exportmodel ${HERMES_EXTRA_LIBRARIES})

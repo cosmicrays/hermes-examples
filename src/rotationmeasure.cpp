@@ -22,7 +22,7 @@ void exampleRM() {
 	auto gasYMW16 = std::make_shared<YMW16>(YMW16());
 	
 	// integrator
-	auto intRM = std::make_shared<RMIntegrator>(RMIntegrator(Sun08, gasYMW16));
+	auto intRM = std::make_shared<RMIntegrator>(RMIntegrator(JF12, gasYMW16));
 
 	// skymap
 	int nside = 32;	

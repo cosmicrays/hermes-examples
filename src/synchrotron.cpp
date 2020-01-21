@@ -23,9 +23,9 @@ void exampleSynchro() {
 	auto Sun08Model = std::make_shared<Sun08CRDensity>(Sun08CRDensity());
 	
 	std::vector<PID> particletypes = {Electron, Positron};
-	auto dragonModel = std::make_shared<DragonCRDensity>(DragonCRDensity(
-				getDataPath("DragonRuns/run_2D.fits.gz"),
-				particletypes, DragonFileType::_2D)); 
+	auto dragonModel = std::make_shared<Dragon2DCRDensity>(Dragon2DCRDensity(
+				getDataPath("CosmicRays/Gaggero17/run_2D.fits.gz"),
+				particletypes)); 
 	
 	// integrator
 	auto intSynchro = std::make_shared<SynchroIntegrator>(SynchroIntegrator(ufield, dragonModel));

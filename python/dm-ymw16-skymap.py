@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 from pyhermes import *
 
-nside = 64
+nside = 128
 skymap = DMSkymap(nside)
 gas = YMW16()
 integrator = DMIntegrator(gas)

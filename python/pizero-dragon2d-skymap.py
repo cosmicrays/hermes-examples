@@ -1,0 +1,32 @@
+import numpy as np
+import healpy
+import matplotlib.pyplot as plt
+
+from pyhermes import *
+
+dragon2D_leptons = Dragon2DCRDensity([Proton])
+kamae_crosssection = Kamae06()
+neutral_gas = RingModelDensity()
+
+nside = 512
+Egamma = 0.1*TeV
+
+skymap_name = "skymap-pizero-nside{}-{}-{}-E{}".format(nside, 'dragon2d', 'remy18', '0.1TeV')
+
+skymap = GammaSkymap(nside=nside, Egamma=Egamma)
+integrator = PiZeroIntegrator(dragon2D_leptons, neutral_gas, kamae_crosssection)
+
+integrator.initCacheTable(Egamma, 100, 100, 20)
+
+skymap.setIntegrator(integrator)
+skymap.compute()
+
+output = FITSOutput("!fits/{}.fits.gz".format(skymap_name))
+skymap.save(output)
+
+healpy.visufunc.mollview(
+    Egamma*2*np.array(skymap),
+    title='$\pi^0$ with DRAGON2D and Remy18, nside={}, $E_\gamma =0.1\,\mathrm{{ TeV }}$'.format(nside),
+    unit="GeV^1 m^-2 s^-1 sr^-1", cmap='magma')
+
+plt.savefig('img/{}.png'.format(skymap_name), dpi=300)

@@ -1,10 +1,10 @@
+from pyhermes import *
+
 import numpy as np
 import healpy
 import matplotlib.pyplot as plt
 
-from pyhermes import *
-
-dragon2D_leptons = Dragon2DCRDensity()
+dragon2D_leptons = Dragon2DCRDensity([Electron, Proton])
 kn_crosssection = KleinNishina()
 CMB_photons = ('cmb', CMB())
 ISRF_photons = ('isrf', ISRF())

@@ -1,19 +1,21 @@
+from pyhermes import *
+
 import numpy as np
 import healpy
 import matplotlib.pyplot as plt
-
-from pyhermes import *
 
 dragon2D_leptons = Dragon2DCRDensity([Proton])
 kamae_crosssection = Kamae06()
 neutral_gas = RingModelDensity()
 
-nside = 512
+nside = 128
 Egamma = 0.1*TeV
 
 skymap_name = "skymap-pizero-nside{}-{}-{}-E{}".format(nside, 'dragon2d', 'remy18', '0.1TeV')
 
 skymap = GammaSkymap(nside=nside, Egamma=Egamma)
+#mask = RectangularWindow(-5*deg, 5*deg, 40*deg, 95*deg);
+#skymap.setMask(mask)
 integrator = PiZeroIntegrator(dragon2D_leptons, neutral_gas, kamae_crosssection)
 
 integrator.initCacheTable(Egamma, 100, 100, 20)

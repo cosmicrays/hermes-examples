@@ -15,7 +15,7 @@ Egamma = 10*GeV
 for name, photonfield in (CMB_photons, ISRF_photons):
     skymap = GammaSkymap(nside=nside, Egamma=Egamma)
     integrator = InverseComptonIntegrator(dragon2D_leptons, photonfield, kn_crosssection)
-    integrator.initCacheTable(Egamma, 60, 60, 12)
+    integrator.setupCacheTable(60, 60, 12)
 
     skymap.setIntegrator(integrator)
     skymap.compute()
@@ -23,8 +23,11 @@ for name, photonfield in (CMB_photons, ISRF_photons):
     output = FITSOutput("!fits/ic-dragon2d-{}-skymap-nside{}.fits.gz".format(name, nside))
     skymap.save(output)
 
+    skymap_data = np.array(skymap)
+    skymap_data[skymap_data != UNSEEN] *= (float(Egamma)/float(GeV))**2
+
     healpy.visufunc.mollview(
-        Egamma*2*np.array(skymap),
+        skymap_data, norm="log",
         title='IC with DRAGON2D and {}, nside={}, $E_\gamma = 10\,\mathrm{{ GeV }}$'.format(name.upper(), nside),
         unit="GeV^1 m^-2 s^-1 sr^-1", cmap='magma')
 

@@ -9,19 +9,19 @@ name = "gammarays-1GeV-1TeV-{}-{}".format('Fornieri20', 'Remy18')
 
 galactic_centre = {
             'label': 'GC',
-            'mask': RectangularWindow([2*deg, -2*deg], [-2*deg, 2*deg])
+            'mask': RectangularWindow(latitude=[-2*deg, 2*deg], longitude=[2*deg, -2*deg])
         }
 galactic_plane = {
             'label': 'GalPlane',
-            'mask': RectangularWindow([2*deg, -2*deg], [-2*deg, 2*deg])
+            'mask': RectangularWindow(latitude=[0*deg, 5*deg], longitude=[0*deg, 360*deg])
         }
 intermediate_region = {
             'label': 'InterLatReg',
-            'mask': RectangularWindow([20*deg, -180*deg], [5*deg, 180*deg])
+            'mask': RectangularWindow(latitude=[20*deg, 5*deg], longitude=[0*deg, 360*deg])
         }
 local_region = {
             'label': 'LocReg',
-            'mask': RectangularWindow([90*deg, -180*deg], [20*deg, 180*deg])
+            'mask': RectangularWindow(latitude=[90*deg, 20*deg], longitude=[0*deg, 360*deg])
         }
 
 def skymap_range_template(integrator, nside, mask):
@@ -45,9 +45,9 @@ def integrate_pizero(gas, mask):
     return skymap_range_template(integrator, nside, mask)
 
 def integrate_bremss(gas, mask):
-    nside = 512
+    nside = 512 
     leptons = cosmicrays.Dragon2D([Electron, Positron])
-    integrator = PiZeroIntegrator(leptons, gas, interactions.BremsstrahlungSimple())
+    integrator = BremsstrahlungIntegrator(leptons, gas, interactions.BremsstrahlungTsai74())
     integrator.setupCacheTable(100, 100, 20)
     return skymap_range_template(integrator, nside, mask)
 
@@ -62,15 +62,23 @@ def integrate_IC(mask):
 neutral_gas_HI = neutralgas.RingModel(neutralgas.RingType.HI)
 neutral_gas_CO = neutralgas.RingModel(neutralgas.RingType.CO)
 
-window = intermediate_region #galactic_plane #galactic_centre
+window = local_region #galactic_centre #intermediate_region #galactic_plane #galactic_centre
 
-skymap_range = integrate_pizero(neutral_gas_HI, window['mask'])
-skymap_range.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-HI', window['label'])))
+#skymap_range = integrate_pizero(neutral_gas_HI, window['mask'])
+#skymap_range.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-HI', window['label'])))
 
-skymap_range = integrate_pizero(neutral_gas_CO, window['mask'])
-output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-CO', window['label']))
+#skymap_range = integrate_pizero(neutral_gas_CO, window['mask'])
+#output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-CO', window['label']))
+#skymap_range.save(output_hp)
+
+#skymap_range = integrate_IC(window['mask'])
+#output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'IC', window['label']))
+#skymap_range.save(output_hp)
+
+skymap_range = integrate_bremss(neutral_gas_HI, window['mask'])
+output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'brems-HI', window['label']))
 skymap_range.save(output_hp)
 
-skymap_range = integrate_IC(window['mask'])
-output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'IC', window['label']))
-skymap_range.save(output_hp)
+#skymap_range = integrate_bremss(neutral_gas_CO, window['mask'])
+#output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'brems-CO', window['label']))
+#skymap_range.save(output_hp)

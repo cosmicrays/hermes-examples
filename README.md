@@ -10,6 +10,8 @@ The purpose of stand-alone Python scripts is to execute well-defined scenarios w
 
 Hermes can be also used as a C++ library, and that is the best way how to extend its functionality and add new features. C++ examples are here to show these cases.
 
+***Notice regardins FITS files***: To download FITS files created by the examples scripts one has to install [***git-lfs***](https://help.github.com/en/github/managing-large-files/versioning-large-files) and pull them with `fit lfs pull`.
+
 ## Jupyter notebooks
 
 ## Python scripts

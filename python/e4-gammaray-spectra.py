@@ -1,10 +1,6 @@
 from pyhermes import *
 from pyhermes.units import *
 
-import numpy as np
-import healpy
-import matplotlib.pyplot as plt
-
 name = "gammarays-1GeV-1TeV-{}-{}".format('Fornieri20', 'Remy18')
 
 galactic_centre = {
@@ -68,17 +64,13 @@ for window in [galactic_centre, galactic_plane, intermediate_region, local_regio
     skymap_range.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-HI', window['label'])))
 
     skymap_range = integrate_pizero(neutral_gas_CO, window['mask'])
-    output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-CO', window['label']))
-    skymap_range.save(output_hp)
+    skymap_range.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-CO', window['label'])))
 
     skymap_range = integrate_IC(window['mask'])
-    output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'IC', window['label']))
-    skymap_range.save(output_hp)
+    skymap_range.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'IC', window['label'])))
 
     skymap_range = integrate_bremss(neutral_gas_HI, window['mask'])
-    output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'brems-HI', window['label']))
-    skymap_range.save(output_hp)
+    skymap_range.save(output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'brems-HI', window['label'])))
 
     skymap_range = integrate_bremss(neutral_gas_CO, window['mask'])
-    output_hp = outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'brems-CO', window['label']))
-    skymap_range.save(output_hp)
+    skymap_range.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'brems-CO', window['label'])))

@@ -30,13 +30,13 @@ def integrate_IC():
     return skymap_template(integrator, nside)
 
 # Neutral gas contained in the so-called ring model
-neutral_gas_HI = neutralgas.RingModel(neutralgas.RingType.HI)
+neutral_gas_HI = neutralgas.RingModel(neutralgas.GasType.HI)
 enabled_rings = [True for i in range(12)]
 enabled_rings[11] = False
 neutral_gas_HI.setEnabledRings(enabled_rings)
 #ring_i = 11 
 #neutral_gas_HI.enableRingNo(ring_i)
-neutral_gas_CO = neutralgas.RingModel(neutralgas.RingType.CO)
+neutral_gas_CO = neutralgas.RingModel(neutralgas.GasType.H2)
 
 label = 'fullsky'
 skymap = integrate_pizero(neutral_gas_HI)

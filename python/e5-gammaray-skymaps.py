@@ -39,13 +39,13 @@ neutral_gas_HI.setEnabledRings(enabled_rings)
 neutral_gas_CO = neutralgas.RingModel(neutralgas.GasType.H2)
 
 label = 'fullsky'
-skymap = integrate_pizero(neutral_gas_HI)
-skymap.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-HI', label)))
+#skymap = integrate_pizero(neutral_gas_HI)
+#skymap.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-HI', label)))
 #skymap.save(outputs.HEALPixFormat("!fits/{}-{}-{}-ring-{}.fits.gz".format(name, 'pi0-HI', label, ring_i)))
 
 #skymap = integrate_pizero(neutral_gas_CO)
 #skymap.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'pi0-CO', label)))
 
-#skymap = integrate_IC()
-#skymap.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'IC', label)))
+skymap = integrate_IC()
+skymap.save(outputs.HEALPixFormat("!fits/{}-{}-{}.fits.gz".format(name, 'IC', label)))
 

@@ -5,16 +5,18 @@ import numpy as np
 import healpy
 import matplotlib.pyplot as plt
 
-name = "rotationmeasure-{}-{}-{}".format('NE2001', 'JF12', 'fullsky')
+name = "rotationmeasure-{}-{}-{}".format('YMW16', 'JF12', 'fullsky')
 
 def integrate_rotm():
-    nside = 128
-    gas = chargedgas.NE2001Simple()
-    #gas = chargedgas.YMW16()
-    mfield = magneticfields.JF12Field()
+    nside = 256
+    #gas = chargedgas.NE2001Simple()
+    gas = chargedgas.YMW16()
+    mfield = magneticfields.JF12()
+    mfield.randomTurbulent(1)
+    mfield.randomStriated(1)
 
     integrator = RotationMeasureIntegrator(mfield, gas)
-    sun_pos = Vector3QLength(8.5*kpc, 0*pc, 0*pc)
+    sun_pos = Vector3QLength(8.4*kpc, 0*pc, 0*pc)
     integrator.setSunPosition(sun_pos)
 
     skymap = RotationMeasureSkymap(nside)

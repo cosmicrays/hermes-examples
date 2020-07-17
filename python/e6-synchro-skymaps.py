@@ -6,8 +6,10 @@ import healpy
 import matplotlib.pyplot as plt
 
 def integrate_synchro(freq):
-    nside = 32
+    nside = 128
     mfield = magneticfields.JF12()
+    mfield.randomTurbulent(1)
+    mfield.randomStriated(1)
     dragon2D_leptons = cosmicrays.Dragon2D([Electron, Positron]) 
 
     integrator = SynchroIntegrator(mfield, dragon2D_leptons)
@@ -22,6 +24,11 @@ def integrate_synchro(freq):
     return skymap
 
 freq = 408*MHz
-name = "synchro-{}-{}-{}".format('JF12', freq/MHz, 'window')
+name = "synchro-{}-{}MHz-{}".format('JF12', freq/MHz, 'window')
+skymap = integrate_synchro(freq)
+skymap.save(outputs.HEALPixFormat("!fits/{}.fits.gz".format(name)))
+
+freq = 23*GHz 
+name = "synchro-{}-{}GHz-{}".format('JF12', freq/GHz, 'window')
 skymap = integrate_synchro(freq)
 skymap.save(outputs.HEALPixFormat("!fits/{}.fits.gz".format(name)))

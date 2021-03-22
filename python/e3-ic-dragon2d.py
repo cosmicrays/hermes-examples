@@ -5,11 +5,11 @@ import numpy as np
 import healpy
 import matplotlib.pyplot as plt
 
-#dragon2D_leptons = Dragon2DCRDensity([Electron, Positron])
-dragon2D_leptons = SimpleCRDensity(1*GeV, 100*TeV, 30)
-kn_crosssection = KleinNishina()
-CMB_photons = ('cmb', CMB())
-ISRF_photons = ('isrf', ISRF())
+dragon2D_leptons = cosmicrays.Dragon2D([Electron, Positron])
+#dragon2D_leptons = cosmicrays.SimpleCRDensity(Electron, 1*GeV, 100*TeV, 30)
+kn_crosssection = interactions.KleinNishina()
+CMB_photons = ('cmb', photonfields.CMB())
+ISRF_photons = ('isrf', photonfields.ISRF())
 
 nside = 128
 

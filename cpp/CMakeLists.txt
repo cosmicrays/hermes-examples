@@ -109,8 +109,8 @@ include_directories(include ${HERMES_EXTRA_INCLUDES})
 add_executable(freefree src/freefree.cpp)
 target_link_libraries(freefree ${HERMES_EXTRA_LIBRARIES})
 
-#add_executable(rotationmeasure src/rotationmeasure.cpp)
-#target_link_libraries(rotationmeasure ${HERMES_EXTRA_LIBRARIES})
+add_executable(rotationmeasure src/rotationmeasure.cpp)
+target_link_libraries(rotationmeasure ${HERMES_EXTRA_LIBRARIES})
 
 #add_executable(synchrotron src/synchrotron.cpp)
 #target_link_libraries(synchrotron ${HERMES_EXTRA_LIBRARIES})

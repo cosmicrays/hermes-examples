@@ -123,6 +123,3 @@ target_link_libraries(piondecay ${HERMES_EXTRA_LIBRARIES})
 
 add_executable(inversecompton src/inversecompton.cpp)
 target_link_libraries(inversecompton ${HERMES_EXTRA_LIBRARIES})
-
-#add_executable(exportmodel src/exportmodel.cpp)
-#target_link_libraries(exportmodel ${HERMES_EXTRA_LIBRARIES})

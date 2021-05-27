@@ -26,7 +26,7 @@ void examplePion() {
 	auto skymap = std::make_shared<GammaSkymap>(GammaSkymap(nside, 1_GeV));
 	skymap->setIntegrator(integrator);
 
-	auto output = std::make_shared<outputs::HEALPixFormat>("!example-ic.fits.gz");
+	auto output = std::make_shared<outputs::HEALPixFormat>("!example-piondecay.fits.gz");
 
 	skymap->compute();
 	skymap->save(output);

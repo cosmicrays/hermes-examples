@@ -31,7 +31,7 @@ void exampleRM() {
 	skymap->compute();
 
 	// save
-	auto output = std::make_shared<outputs::HEALPixFormat>("!example.fits.gz");
+	auto output = std::make_shared<outputs::HEALPixFormat>("!example-RM.fits.gz");
 	skymap->save(output);
 }
 

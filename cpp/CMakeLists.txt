@@ -112,11 +112,11 @@ target_link_libraries(freefree ${HERMES_EXTRA_LIBRARIES})
 add_executable(rotationmeasure src/rotationmeasure.cpp)
 target_link_libraries(rotationmeasure ${HERMES_EXTRA_LIBRARIES})
 
-#add_executable(synchrotron src/synchrotron.cpp)
-#target_link_libraries(synchrotron ${HERMES_EXTRA_LIBRARIES})
+add_executable(synchrotron src/synchrotron.cpp)
+target_link_libraries(synchrotron ${HERMES_EXTRA_LIBRARIES})
 
-#add_executable(synchrotronwithabsorption src/synchrotronwithabsorption.cpp)
-#target_link_libraries(synchrotronwithabsorption ${HERMES_EXTRA_LIBRARIES})
+add_executable(synchrotronwithabsorption src/synchrotronwithabsorption.cpp)
+target_link_libraries(synchrotronwithabsorption ${HERMES_EXTRA_LIBRARIES})
 
 add_executable(piondecay src/piondecay.cpp)
 target_link_libraries(piondecay ${HERMES_EXTRA_LIBRARIES})

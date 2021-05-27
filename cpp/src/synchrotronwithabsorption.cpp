@@ -1,55 +1,49 @@
-#include "hermes.h"
-
 #include <iostream>
 #include <memory>
+
+#include "hermes.h"
 
 namespace hermes {
 
 void exampleSynchroAbsorption() {
-
 	// magnetic field models
-	auto JF12 = std::make_shared<JF12Field>(JF12Field());
+	auto JF12 = std::make_shared<magneticfields::JF12>();
 	JF12->randomStriated(137);
 	JF12->randomTurbulent(1337);
-	auto PT11 = std::make_shared<PT11Field>(PT11Field());
-	auto WMAP07 = std::make_shared<WMAP07Field>(WMAP07Field());
-	auto Sun08 = std::make_shared<Sun08Field>(Sun08Field());
-	
-	// cosmic ray density models
-	auto simpleModel = std::make_shared<SimpleCRDensity>(SimpleCRDensity());
-	auto WMAP07Model = std::make_shared<WMAP07CRDensity>(WMAP07CRDensity());
-	auto Sun08Model = std::make_shared<Sun08CRDensity>(Sun08CRDensity());
+	auto PT11 = std::make_shared<magneticfields::PT11>();
+	auto Sun08 = std::make_shared<magneticfields::Sun08>();
 
-        std::vector<PID> particletypes = {Electron, Positron};
-        auto dragonModel = std::make_shared<Dragon2DCRDensity>(Dragon2DCRDensity(
-                                getDataPath("CosmicRays/Gaggero17/run_2D.fits.gz"),
-                                particletypes));
-	
+	// cosmic ray density models
+	auto simpleModel = std::make_shared<cosmicrays::SimpleCR>();
+	auto WMAP07Model = std::make_shared<cosmicrays::WMAP07>();
+	auto Sun08Model = std::make_shared<cosmicrays::Sun08>();
+
+	std::vector<PID> particletypes = {Electron, Positron};
+	auto dragonFilename = getDataPath("CosmicRays/Fornieri20/run2d_gamma_D03,7_delta0,45_vA13.fits.gz");
+	auto dragonModel = std::make_shared<cosmicrays::Dragon2D>(dragonFilename, particletypes);
+
 	// gas models
-	auto gasCordes91 = std::make_shared<HII_Cordes91>(HII_Cordes91());
-	auto gasYMW16 = std::make_shared<YMW16>(YMW16());
-	
+	auto gasCordes91 = std::make_shared<ionizedgas::HII_Cordes91>();
+	auto gasYMW16 = std::make_shared<ionizedgas::YMW16>();
+
 	// integrator
-	auto intSynchroAbsorption = std::make_shared<SynchroAbsorptionIntegrator>(
-		SynchroAbsorptionIntegrator(JF12, simpleModel, gasYMW16));
+	auto integrator = std::make_shared<SynchroAbsorptionIntegrator>(JF12, simpleModel, gasYMW16);
 
 	// skymap
 	int nside = 16;
 	auto skymaps = std::make_shared<RadioSkymapRange>(RadioSkymapRange(nside, 1_MHz, 10_GHz, 20));
-	skymaps->setIntegrator(intSynchroAbsorption);
+	skymaps->setIntegrator(integrator);
 
-	auto output = std::make_shared<FITSOutput>(FITSOutput("!example-synchro-absorption.fits.gz"));
-	
+	auto output = std::make_shared<outputs::HEALPixFormat>("!example-synchro-absorption.fits.gz");
+
 	skymaps->compute();
 	skymaps->save(output);
 }
 
-} // namespace hermes
+}  // namespace hermes
 
-int main(void){
-
+int main(void) {
 	hermes::exampleSynchroAbsorption();
 
 	return 0;
 }
-

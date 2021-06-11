@@ -8,7 +8,7 @@ namespace hermes {
 void examplePion() {
 	// cosmic ray density models
 	auto simpleModel = std::make_shared<cosmicrays::SimpleCR>();
-	std::vector<PID> particletypes = {Proton};
+	std::vector<PID> particletypes = {Proton, Helium};
 	auto dragonFilename = getDataPath("CosmicRays/Fornieri20/run2d_gamma_D03,7_delta0,45_vA13.fits.gz");
 	auto dragonModel = std::make_shared<cosmicrays::Dragon2D>(dragonFilename, particletypes);
 

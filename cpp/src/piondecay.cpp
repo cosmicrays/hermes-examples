@@ -13,13 +13,14 @@ void examplePion() {
 	auto dragonModel = std::make_shared<cosmicrays::Dragon2D>(dragonFilename, particletypes);
 
 	// interaction
-	auto kamae = std::make_shared<interactions::Kamae06Gamma>();
+	auto kamae_gamma = std::make_shared<interactions::Kamae06Gamma>();
+    auto kamae_nu = std::make_shared<interactions::Kamae06Neutrino>();
 
 	// HI model
 	auto ringModel = std::make_shared<neutralgas::RingModel>(neutralgas::GasType::HI);
 
 	// integrator
-	auto integrator = std::make_shared<PiZeroIntegrator>(dragonModel, ringModel, kamae);
+	auto integrator = std::make_shared<PiZeroIntegrator>(dragonModel, ringModel, kamae_gamma);
 
 	// skymap
 	int nside = 32;

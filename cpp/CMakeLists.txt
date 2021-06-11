@@ -121,5 +121,8 @@ target_link_libraries(synchrotronwithabsorption ${HERMES_EXTRA_LIBRARIES})
 add_executable(piondecay src/piondecay.cpp)
 target_link_libraries(piondecay ${HERMES_EXTRA_LIBRARIES})
 
+add_executable(piondecaywithabsorption src/piondecaywithabsorption.cpp)
+target_link_libraries(piondecaywithabsorption ${HERMES_EXTRA_LIBRARIES})
+
 add_executable(inversecompton src/inversecompton.cpp)
 target_link_libraries(inversecompton ${HERMES_EXTRA_LIBRARIES})

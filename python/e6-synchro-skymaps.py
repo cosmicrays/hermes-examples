@@ -14,7 +14,7 @@ def integrate_synchro(freq):
 
     integrator = SynchroIntegrator(mfield, dragon2D_leptons)
     sun_pos = Vector3QLength(8.5*kpc, 0*pc, 0*pc)
-    integrator.setSunPosition(sun_pos)
+    integrator.setObsPosition(sun_pos)
 
     skymap = RadioSkymap(nside, freq)
     skymap.setIntegrator(integrator)

@@ -22,7 +22,7 @@ local_region = {
 
 def skymap_range_template(integrator, nside, mask):
     sun_pos = Vector3QLength(8.0*kpc, 0*pc, 0*pc)
-    integrator.setSunPosition(sun_pos)
+    integrator.setObsPosition(sun_pos)
 
     skymap_range = GammaSkymapRange(nside, 1*GeV, 1*TeV, 25)
     skymap_range.setIntegrator(integrator)

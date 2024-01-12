@@ -13,7 +13,7 @@ def integrate_dispm():
 
     integrator = DispersionMeasureIntegrator(gas)
     sun_pos = Vector3QLength(8.3*kpc, 0*pc, 0*pc)
-    integrator.setSunPosition(sun_pos)
+    integrator.setObsPosition(sun_pos)
 
     skymap = DispersionMeasureSkymap(nside)
     skymap.setIntegrator(integrator)

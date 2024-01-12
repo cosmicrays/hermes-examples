@@ -5,7 +5,7 @@ name = "gammarays-10GeV-{}-{}".format('Fornieri20', 'Remy18')
 
 def skymap_template(integrator, nside):
     sun_pos = Vector3QLength(8.0*kpc, 0*pc, 0*pc)
-    integrator.setSunPosition(sun_pos)
+    integrator.setObsPosition(sun_pos)
 
     skymap = GammaSkymap(nside, 10*GeV)
     skymap.setIntegrator(integrator)

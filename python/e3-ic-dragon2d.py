@@ -10,7 +10,6 @@ nside = 128
 
 for name, photonfield in (CMB_photons, ISRF_photons):
     skymap_range = GammaSkymapRange(nside, 1*GeV, 100*TeV, 20)
-    skymap_range = GammaSkymapRange(nside, 1*GeV, 100*TeV, 10)
     integrator = InverseComptonIntegrator(dragon2D_leptons, photonfield, kn_crosssection)
     integrator.setupCacheTable(60, 60, 12)
     integrator.setupCacheTable(80, 80, 15)

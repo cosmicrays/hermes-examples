@@ -32,5 +32,6 @@
 *.app
 
 # Directories
+*.DS_Store
 build/
 cpp/build/

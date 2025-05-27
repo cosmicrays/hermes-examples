@@ -36,7 +36,7 @@ def compute_spectra(mask, nside: int = 128):
 
     for name, model in gas_models.items():
         skymap = integrate_pizero(nuclei, model, xsecs, mask, nside)
-        fitsname = f'!fits/Pi0-{name}-{nside}-TeV-PeV-gammaray-masked-spectrum.fits.gz'
+        fitsname = f'!fits/Pi0-{name}-{nside}-TeV-PeV-gamma-masked-spectrum.fits.gz'
         skymap.save(outputs.HEALPixFormat(fitsname))
 
 if __name__ == "__main__":
@@ -46,9 +46,9 @@ if __name__ == "__main__":
     compute_spectra(mask=windows['InterLatReg'], nside=nside)
 
     print(f"Plotting spectra for nside={nside}...")
-    plot_spectrum(f'fits/Pi0-HI-{nside}-TeV-PeV-gammaray-masked-spectrum.fits.gz', 
-                  f'Pi0-HI-InterLat-pectrum-{nside}')
+    plot_spectrum(f'fits/Pi0-HI-{nside}-TeV-PeV-gamma-masked-spectrum.fits.gz', 
+                  f'Gamma-Pi0-HI-InterLat-pectrum-{nside}')
     
-    plot_spectrum(f'fits/Pi0-H2-{nside}-TeV-PeV-gammaray-masked-spectrum.fits.gz', 
-                  f'Pi0-H2-InterLat-spectrum-{nside}')
+    plot_spectrum(f'fits/Pi0-H2-{nside}-TeV-PeV-gamma-masked-spectrum.fits.gz', 
+                  f'Gamma-Pi0-H2-InterLat-spectrum-{nside}')
 

@@ -29,20 +29,19 @@ def compute_spectra(nside: int = 128):
 
     for name, model in gas_models.items():
         skymap = integrate_pizero(nuclei, model, xsecs, nside)
-        fitsname = f'!fits/Pi0-{name}-{nside}-TeV-PeV-gammaray-spectrum.fits.gz'
+        fitsname = f'!fits/Pi0-{name}-{nside}-TeV-PeV-gamma-spectrum.fits.gz'
         skymap.save(outputs.HEALPixFormat(fitsname))
 
 if __name__ == "__main__":
     nside = 64  # HEALPix NSIDE parameter
 
     print(f"Computing Pion Decay spectra for nside={nside}...")
-    compute_spectra(nside, doGamma=True)
-    compute_spectra(nside, doGamma=False)
+    compute_spectra(nside)
 
     print(f"Plotting spectra for nside={nside}...")
-    plot_spectrum(f'fits/Pi0-HI-{nside}-TeV-PeV-spectrum.fits.gz', 
-                  f'Pi0-HI-spectrum-{nside}')
+    plot_spectrum(f'fits/Pi0-HI-{nside}-TeV-PeV-gamma-spectrum.fits.gz', 
+                  f'Gamma-Pi0-HI-spectrum-{nside}')
     
-    plot_spectrum(f'fits/Pi0-H2-{nside}-TeV-PeV-spectrum.fits.gz', 
-                  f'Pi0-H2-spectrum-{nside}')
+    plot_spectrum(f'fits/Pi0-H2-{nside}-TeV-PeV-gamma-spectrum.fits.gz', 
+                  f'Gamma-Pi0-H2-spectrum-{nside}')
 

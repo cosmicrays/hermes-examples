@@ -14,7 +14,7 @@ def skymap_range_template(integrator, nside: int):
 
 def integrate_pizero(nuclei, gas, xsecs, nside: int):
     integrator = PiZeroIntegrator(nuclei, gas, xsecs)
-    integrator.setupCacheTable(20, 20, 8)  # To be adjusted based on performance needs
+    integrator.setupCacheTable(40, 40, 16)  # To be adjusted based on performance needs
     return skymap_range_template(integrator, nside)
 
 # Save functions for spectra

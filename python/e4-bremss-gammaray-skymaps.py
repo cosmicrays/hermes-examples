@@ -31,20 +31,20 @@ def compute_skymaps(E_gamma: float = 10, nside: int = 128):
 
     for name, model in gas_models.items():
         fitsname = f'!fits/Bremss-{name}-{nside}-{E_gamma}GeV-skymap.fits.gz'
-        skymap = integrate_pizero(leptons, model, xsecs, E_gamma, nside)
+        skymap = integrate_bremss(leptons, model, xsecs, E_gamma, nside)
         skymap.save(outputs.HEALPixFormat(fitsname))
 
 if __name__ == "__main__":
     E_gamma = 10  # GeV
     nside = 256  # HEALPix NSIDE parameter
 
-    print(f"Computing Pion Decay skymaps for E_gamma={E_gamma} GeV and nside={nside}...")
+    print(f"Computing Bremss skymaps for E_gamma={E_gamma} GeV and nside={nside}...")
     compute_skymaps(E_gamma, nside)
     
     print(f"Plotting skymaps for E_gamma={E_gamma} GeV and nside={nside}...")
     plot_map_mollview(f'fits/Bremss-HI-{nside}-{E_gamma}GeV-skymap.fits.gz', 
-                      f'Bremss-HI-mollview-{nside}-{E_gamma}GeV', 
+                      f'Gamma-bremss-HI-mollview-{nside}-{E_gamma}GeV', 
                       min_map=-4.0, max_map=-1.0)
     plot_map_mollview(f'fits/Bremss-H2-{nside}-{E_gamma}GeV-skymap.fits.gz', 
-                      f'Bremss-H2-mollview-{nside}-{E_gamma}GeV', 
+                      f'Gamma-bremss-H2-mollview-{nside}-{E_gamma}GeV', 
                       min_map=-4.0, max_map=0.)

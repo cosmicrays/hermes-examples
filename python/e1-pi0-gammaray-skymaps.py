@@ -29,7 +29,7 @@ def compute_skymaps(E_gamma: float = 10, nside: int = 128):
     nuclei = cosmicrays.Dragon2D([Proton, Helium])
     xsecs = interactions.Kamae06Gamma() 
     for name, model in gas_models.items():
-        fitsname = f'!fits/Pi0-{name}-{nside}-{E_gamma}GeV-skymap.fits.gz'
+        fitsname = f'!fits/Pi0-{name}-{nside}-{E_gamma}GeV-gamma-skymap.fits.gz'
         skymap = integrate_pizero(nuclei, model, xsecs, E_gamma, nside)
         skymap.save(outputs.HEALPixFormat(fitsname))
 
@@ -41,9 +41,9 @@ if __name__ == "__main__":
     compute_skymaps(E_gamma, nside)
     
     print(f"Plotting skymaps for E_gamma={E_gamma} GeV and nside={nside}...")
-    plot_map_mollview(f'fits/Pi0-HI-{nside}-{E_gamma}GeV-skymap.fits.gz', 
-                      f'Pi0-HI-mollview-{nside}-{E_gamma}GeV', 
+    plot_map_mollview(f'fits/Pi0-HI-{nside}-{E_gamma}GeV-gamma-skymap.fits.gz', 
+                      f'Gamma-Pi0-HI-mollview-{nside}-{E_gamma}GeV', 
                       min_map=-4.0, max_map=-1.0)
-    plot_map_mollview(f'fits/Pi0-H2-{nside}-{E_gamma}GeV-skymap.fits.gz', 
-                      f'Pi0-H2-mollview-{nside}-{E_gamma}GeV', 
+    plot_map_mollview(f'fits/Pi0-H2-{nside}-{E_gamma}GeV-gamma-skymap.fits.gz', 
+                      f'Gamma-Pi0-H2-mollview-{nside}-{E_gamma}GeV', 
                       min_map=-4.0, max_map=0.)

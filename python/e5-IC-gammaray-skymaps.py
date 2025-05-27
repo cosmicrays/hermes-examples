@@ -37,12 +37,12 @@ if __name__ == "__main__":
     nside = 256  # HEALPix NSIDE parameter
 
     print(f"Computing Inverse Compton skymaps for E_gamma={E_gamma} GeV and nside={nside}...")
-    #compute_skymaps(E_gamma, nside)
+    compute_skymaps(E_gamma, nside)
     
     print(f"Plotting skymaps for E_gamma={E_gamma} GeV and nside={nside}...")
     plot_map_mollview(f'fits/IC-CMB-{nside}-{E_gamma}GeV-skymap.fits.gz', 
-                      f'IC-CMB-mollview-{nside}-{E_gamma}GeV', 
+                      f'Gamma-IC-CMB-mollview-{nside}-{E_gamma}GeV', 
                       min_map=-4.7, max_map=-3.7)
     plot_map_mollview(f'fits/IC-ISRF-{nside}-{E_gamma}GeV-skymap.fits.gz', 
-                      f'IC-ISRF-mollview-{nside}-{E_gamma}GeV', 
+                      f'Gamma-IC-ISRF-mollview-{nside}-{E_gamma}GeV', 
                       min_map=-3.7, max_map=-1.7)

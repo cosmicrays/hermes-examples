@@ -1,4 +1,5 @@
 import os
+import sys
 import logging
 from typing import Tuple
 
@@ -6,8 +7,11 @@ import fitsio
 import healpy as hp
 import numpy as np
 import matplotlib
-matplotlib.use('MacOSX')
+if sys.platform == "darwin":
+    matplotlib.use('MacOSX')
 import matplotlib.pyplot as plt
+import scienceplots
+plt.style.use('science')
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')

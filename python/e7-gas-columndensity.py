@@ -22,7 +22,7 @@ def prepare_axes(header, log_img):
     n_lon = header['NAXIS1']
     n_lat = header['NAXIS2']
     b = np.linspace(-90., 90., n_lat)
-    l = np.linspace(-180., 190., n_lon)
+    l = np.linspace(-180., 180., n_lon)
     fig, ax = plt.subplots(figsize=(10, 5))
     im = ax.imshow(log_img , cmap='Blues', vmin=np.max(log_img)-2.0, vmax=np.max(log_img),
                     extent=[l[0], l[-1], b[0], b[-1]], origin='lower', aspect='auto')

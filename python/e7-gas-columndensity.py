@@ -43,10 +43,10 @@ def finalize_plot(ax, title, output_filename):
     savefig(plt, output_filename)
     plt.close()
 
-def plot_map(fits_map_filename, imap, output_filename, title):
+def plot_map(fits_map_filename, imap, output_filename, title, conversion_factor = 1.):
     header = get_header(fits_map_filename)
     img = get_img(fits_map_filename, imap)
-    log_img = np.log10(img + 1e-20)
+    log_img = np.log10(conversion_factor * img + 1e-20)
     logging.info(f"Plotting {title} with vmax: {np.max(log_img):.2f}")
     fig, ax, im = prepare_axes(header, log_img)
     configure_colorbar(fig, im)
@@ -55,8 +55,9 @@ def plot_map(fits_map_filename, imap, output_filename, title):
 if __name__ == "__main__":
     fits_map_filename = 'gas_maps/WCOrings_COGAL.fits.gz'
     logging.info(f"Processing file: {fits_map_filename}")
+    X_CO = 1.8e20 # cm-2 / (K * km / s)
     for i in range(12):
-        plot_map(fits_map_filename, i, f'NH2_ring_{i}', f'H2 Ring {i}')
+        plot_map(fits_map_filename, i, f'NH2_ring_{i}', f'H2 Ring {i}', X_CO)
     logging.info("Processing complete.")
 
     fits_map_filename = 'gas_maps/NHrings_Ts300K.fits.gz'
